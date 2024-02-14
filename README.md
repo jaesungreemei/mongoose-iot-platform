@@ -48,31 +48,33 @@ Windows ipconfig -> 이더넷 어댑터 이더넷:기본 게이트웨이(172.30.
 
 ## (3) [WSL2] WSL Configuration
 
-1. WSL2 Ubuntu Initialize
+1. project repo WSL 내부로 복사하기
+
+2. WSL2 Ubuntu Initialize
 
     ```bash
     bash script/init.sh
     ```
 
-2. Kafka 설치 및 Initialize
+3. Kafka 설치 및 Initialize
 
     ```bash
     bash script/init-kafka.sh
     ```
 
-3. Cassandra 설치 및 Initialize
+4. Cassandra 설치 및 Initialize
 
     ```bash
     bash script/init-cassandra.sh
     ```
 
-4. Kafka Connect 설치 및 Initialize
+5. Kafka Connect 설치 및 Initialize
 
     ```bash
     bash script/init-kafka-connect.sh
     ```
 
-5. Topic, Table, Connector Initialize
+6. Topic, Table, Connector Initialize
 
     ```bash
     bash script/init-materials.sh
