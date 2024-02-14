@@ -70,11 +70,11 @@ CASSANDRA_ENV_CONFIG="/etc/cassandra/cassandra-env.sh"
 
 # MAX_HEAP_SIZE 설정
 echo "[Cassandra] Configuring MAX_HEAP_SIZE..."
-sudo sed -i '/^#MAX_HEAP_SIZE="4G"/c\MAX_HEAP_SIZE="4G"' $CASSANDRA_ENV_CONFIG
+sudo sed -i '/^#MAX_HEAP_SIZE="4G"/c\MAX_HEAP_SIZE="2G"' $CASSANDRA_ENV_CONFIG
 
 # HEAP_NEWSIZE 설정
 echo "[Cassandra] Configuring HEAP_NEWSIZE..."
-sudo sed -i '/^#HEAP_NEWSIZE="800M"/c\HEAP_NEWSIZE="512M"' $CASSANDRA_ENV_CONFIG
+sudo sed -i '/^#HEAP_NEWSIZE="800M"/c\HEAP_NEWSIZE="256M"' $CASSANDRA_ENV_CONFIG
 
 echo "[Cassandra] Configuration update complete."
 
@@ -82,13 +82,13 @@ echo "[Cassandra] Configuration update complete."
 JVM_OPTIONS_FILE="/etc/cassandra/jvm-server.options"
 
 # -Xms와 -Xmx 설정 업데이트
-echo "[Cassandra] Updating -Xms and -Xmx to 4G..."
-sudo sed -i 's/^#-Xms4G/-Xms4G/' $JVM_OPTIONS_FILE
-sudo sed -i 's/^#-Xmx4G/-Xmx4G/' $JVM_OPTIONS_FILE
+echo "[Cassandra] Updating -Xms and -Xmx to 2G..."
+sudo sed -i 's/^#-Xms4G/-Xms2G/' $JVM_OPTIONS_FILE
+sudo sed -i 's/^#-Xmx4G/-Xmx2G/' $JVM_OPTIONS_FILE
 
 # -Xmn 설정 업데이트
-echo "[Cassandra] Updating -Xmn to 400M..."
-sudo sed -i 's/^#-Xmn800M/-Xmn400M/' $JVM_OPTIONS_FILE
+echo "[Cassandra] Updating -Xmn to 256M..."
+sudo sed -i 's/^#-Xmn800M/-Xmn256M/' $JVM_OPTIONS_FILE
 
 echo "[Cassandra] JVM options update complete."
 
