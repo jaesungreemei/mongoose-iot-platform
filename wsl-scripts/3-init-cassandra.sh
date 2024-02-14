@@ -3,13 +3,13 @@
 # 저장소 공개 키 추가를 위한 패키지 설치
 sudo apt install apt-transport-https
 
-# 저장소의 공개 키 추가
-echo "Adding Cassandra repository keys..."
-wget -q -O - https://www.apache.org/dist/cassandra/KEYS | sudo apt-key add -
-
 # Cassandra 공식 저장소 추가
 echo "Adding Cassandra repository..."
-echo "deb http://www.apache.org/dist/cassandra/debian 311x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
+echo "deb https://debian.cassandra.apache.org 40x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
+
+# 저장소의 공개 키 추가
+echo "Adding Cassandra repository keys..."
+curl https://downloads.apache.org/cassandra/KEYS | sudo apt-key add -
 
 # 패키지 목록 업데이트
 echo "Updating package list..."
@@ -50,6 +50,6 @@ sudo sed -i "/^# broadcast_rpc_address:/c\broadcast_rpc_address: $broadcast_rpc_
 
 # Cassandra 서비스 재시작
 echo "Restarting Cassandra service..."
-sudo systemctl start cassandra
+sudo systemctl restart cassandra
 
 echo "Cassandra installation and configuration completed."

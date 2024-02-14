@@ -21,9 +21,9 @@ mv /opt/kafka_2.13-3.6.1/* $KAFKA_DIR
 
 
 # (2) Prompt user for IP and port for advertised.listeners
-echo "Configuring listeners and advertised.listeners in server.properties..."
-read -p "Enter the IP address for advertised.listeners configuration: " listener_ip
-read -p "Enter the port for advertised.listeners configuration: " listener_port
+echo "[Kafka] Configuring listeners and advertised.listeners in server.properties..."
+read -p "[Kafka] Enter the IP address for advertised.listeners configuration: " listener_ip
+read -p "[Kafka] Enter the port for advertised.listeners configuration: " listener_port
 
 # (3) Update server.properties with listener configurations
 echo "listeners=PLAINTEXT://0.0.0.0:9092" >> $KAFKA_DIR/config/server.properties
