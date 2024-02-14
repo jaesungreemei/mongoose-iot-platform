@@ -26,18 +26,19 @@ def query_data():
 
     # 조회된 데이터를 JSON으로 변환
     data = [{
+            "value1": round(row.value1, 4),
         'machine': row.machine,
         'day': row.day,
         'time': row.time,
-        'value1': row.value1,
-        'value2': row.value2,
-        'value3': row.value3,
-        'value4': row.value4,
-        'value5': row.value5,
-        'value6': row.value6,
-        'value7': row.value7,
-        'value8': row.value8,
-        'value9': row.value9
+        'value1': round(row.value1, 4),
+        'value2': round(row.value2, 4),
+        'value3': round(row.value3, 4),
+        'value4': round(row.value4, 4),
+        'value5': round(row.value5, 4),
+        'value6': round(row.value6, 4),
+        'value7': round(row.value7, 4),
+        'value8': round(row.value8, 4),
+        'value9': round(row.value9, 4)
     } for row in rows]
 
     return jsonify(data)
