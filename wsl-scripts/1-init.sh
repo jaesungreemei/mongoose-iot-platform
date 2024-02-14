@@ -8,10 +8,10 @@ echo "Package installation completed."
 
 
 # 환경 변수 설정
-# echo "Applying environment variables..."
-# echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> ~/.bashrc
-# echo 'export PATH=$PATH:$JAVA_HOME/bin' >> ~/.bashrc
-# source ~/.bashrc
+echo "Applying environment variables..."
+echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> ~/.bashrc
+echo 'export PATH=$PATH:$JAVA_HOME/bin' >> ~/.bashrc
+source ~/.bashrc
 
 # Enable systemd for WSL2
 # echo "Enable systemd for WSL2..."
