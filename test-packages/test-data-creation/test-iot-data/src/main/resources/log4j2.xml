@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <RollingFile name="fileLogger" fileName="logs/test-iot-data-logs.log" filePattern="logs/test-iot-data-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <!-- TimeBasedTriggeringPolicy with one-week interval -->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+            <DefaultRolloverStrategy max="7" />
+            <Actions>
+                <!-- Delete logs older than one week -->
+                <Delete basePath="logs" maxDepth="1">
+                    <IfFileName glob="myLogFile-*.log.gz">
+                        <IfLastModified age="7d" />
+                    </IfFileName>
+                </Delete>
+            </Actions>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="fileLogger" />
+        </Root>
+    </Loggers>
+</Configuration>

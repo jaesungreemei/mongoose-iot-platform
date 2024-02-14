@@ -1,0 +1,53 @@
+# --------------------------------------- #
+# (Step 1-1) Setup Java (Java SE Development Kit 8u251)
+# --------------------------------------- #
+
+1. Install Java JDK 8
+ - https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html
+
+2. Edit environment variables
+ - JAVA_HOME
+
+# --------------------------------------- #
+# (Step 1-2) Setup Python 2.7.8
+# --------------------------------------- #
+
+1. Install Python 2.7.8
+ - https://www.python.org/downloads/release/python-278/
+
+2. Edit environment variables
+ - *Make sure Python 2.7.8 appears before any other python version in environment variables
+
+# --------------------------------------- #
+# (Step 2) Setup Kafka (kafka_2.13-3.6.1)
+# --------------------------------------- #
+
+1. Install Kafka
+ - https://kafka.apache.org/downloads
+
+2. Unzip file in C:\
+
+3. Edit where data is stored in Kafka
+ - "dataDir" in server.properties and zookeeper.properties
+
+# --------------------------------------- #
+# (Step 3) Setup Cassandra (apache-cassandra-3.11.16)
+# --------------------------------------- #
+
+1. Install Cassandra
+ - https://cassandra.apache.org/_/download.html
+
+2. Edit environment variables
+ - CASSANDRA_HOME
+
+3. Disable Execution-Policy for Powerhshelll
+ - powershell Set-ExecutionPolicy Unrestricted
+
+# --------------------------------------- #
+# (Step 4) Setup DataStax Kafka Connector ()
+# --------------------------------------- #
+
+1. Install Kafka Connector
+ - https://downloads.datastax.com/#akc
+
+2. Install Kaf
