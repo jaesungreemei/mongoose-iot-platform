@@ -2,9 +2,9 @@
 MongooseAI IoT Data Streaming Platform
 
 # TODO
-1. JAVA Backend 만들기
-2. API 명세서 작성
-3. Realtime API 만들기
+1. Kafka Realtime API 만들기
+2. API 함수 및 명세서 작성
+3. Backend 코드 JAVA로 수정하기
 
 # How to Use
 
