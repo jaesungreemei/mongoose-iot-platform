@@ -13,6 +13,8 @@ echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> ~/.bashrc
 echo 'export PATH=$PATH:$JAVA_HOME/bin' >> ~/.bashrc
 source ~/.bashrc
 
+sudo apt install -y python3.8-venv
+
 # git config --global user.email seok990301@gmail.com
 # git config --global user.name seok0301
 # git config --global core.editor "vim"

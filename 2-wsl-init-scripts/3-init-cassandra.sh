@@ -51,6 +51,15 @@ read -p "[Cassandra] Enter the IP address for broadcast_rpc_address configuratio
 sudo sed -i "/^# broadcast_rpc_address:/c\broadcast_rpc_address: $broadcast_rpc_ip" $CASSANDRA_CONFIG
 
 
+
+
+echo "[Cassandra] Enabling authentication..."
+# authenticator 설정 변경
+sudo sed -i "s/authenticator: AllowAllAuthenticator/authenticator: PasswordAuthenticator/g" $CASSANDRA_CONFIG
+echo "[Cassandra] Authentication enabled successfully."
+
+
+
 # jna 설정
 echo "[Cassandra] Configuring jna-5.14.0..."
 wget -O /tmp/jna-5.14.0.jar https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.14.0/jna-5.14.0.jar

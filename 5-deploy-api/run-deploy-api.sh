@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# 가상 환경 디렉토리 설정
+VENV_DIR="iot-venv"
+
+# 가상 환경 생성 (이미 존재하는 경우 건너뜀)
+python3 -m venv $VENV_DIR
+
+# 가상 환경 활성화
+source $VENV_DIR/bin/activate
+
+# Flask 실행할 애플리케이션 파일 경로 지정
+export FLASK_APP=5-deploy-api/api.py
+
+# export FLASK_ENV=development  # 개발 환경 설정
+
+# 필요한 패키지 설치
+pip install Flask cassandra-driver
+
+echo "Starting the API server in the background..."
+
+# API 스크립트를 백그라운드에서 실행하고 로그를 파일로 저장
+nohup flask run --host=0.0.0.0 --port=9012 > 5-deploy-api/api_server.log 2>&1 &
+
+echo $! > 5-deploy-api/api_server_pid
+
+echo "API server is running. Logs are being written to 5-deploy-api/api_server.log"
+echo "API server PID is saved to 5-deploy-api/api_server_pid"
+
+# 가상 환경 비활성화
+deactivate

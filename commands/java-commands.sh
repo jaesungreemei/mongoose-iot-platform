@@ -1,3 +1,6 @@
+# java version 두 개 깔렸을 경우 버전 변경
+sudo update-alternatives --config java
+
 # Step 1: Create Maven Project
 mvn archetype:generate -DgroupId=com.mongooseai -DartifactId=test-mssql-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 mvn archetype:generate "-DgroupId=com.mongooseai" "-DartifactId=test-java-app" "-DarchetypeArtifactId=maven-archetype-quickstart" "-DinteractiveMode=false"
