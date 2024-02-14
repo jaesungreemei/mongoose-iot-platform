@@ -18,14 +18,15 @@ MongooseAI IoT Data Streaming Platform
 
     ```
     # powershell 관리자 권한 실행
-    .\script\wsl-install.ps1
+    .\windows-script\1-wsl-install.ps1
     ```
 
 2. WSL 포트 포워딩 및 windows 방화벽 설정
 
     ```
     # powershell 관리자 권한 실행
-    .\script\wsl-init.ps1
+    .\script\2-wsl-init.ps1
+    .\script\3-wsl-settings.ps1
     ```
 
     인바운드 규칙 및 WSL 포트포워딩
@@ -49,35 +50,10 @@ Windows ipconfig -> 이더넷 어댑터 이더넷:기본 게이트웨이(172.30.
 ## (3) [WSL2] WSL Configuration
 
 1. project repo WSL 내부로 복사하기
-
-2. WSL2 Ubuntu Initialize
-
-    ```bash
-    bash script/init.sh
-    ```
-
-3. Kafka 설치 및 Initialize
+2. Run Script
 
     ```bash
-    bash script/init-kafka.sh
-    ```
-
-4. Cassandra 설치 및 Initialize
-
-    ```bash
-    bash script/init-cassandra.sh
-    ```
-
-5. Kafka Connect 설치 및 Initialize
-
-    ```bash
-    bash script/init-kafka-connect.sh
-    ```
-
-6. Topic, Table, Connector Initialize
-
-    ```bash
-    bash script/init-materials.sh
+    bash wsl-scripts/run-init.sh
     ```
 
 ## (4) [WSL2] Run API
