@@ -18,14 +18,14 @@ MongooseAI IoT Data Streaming Platform
 
     ```
     # powershell 관리자 권한 실행
-    .\windows-script\1-wsl-install.ps1
+    .\windows-scripts\1-wsl-install.ps1
     ```
 
 2. WSL 포트 포워딩 및 windows 방화벽 설정
 
     ```
     # powershell 관리자 권한 실행
-    .\windows-scriptㄴ\2-wsl-settings.ps1
+    .\windows-scripts\2-wsl-settings.ps1
     ```
 
     인바운드 규칙 및 WSL 포트포워딩
