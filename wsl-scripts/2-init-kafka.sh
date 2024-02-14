@@ -15,6 +15,7 @@ echo "Extracting Kafka to $KAFKA_DIR..."
 mkdir -p $KAFKA_DIR
 tar -xzf /tmp/kafka.tgz -C /opt
 mv /opt/kafka_2.13-3.6.1/* $KAFKA_DIR
+sudo rm /tmp/kafka.tgz
 
 # (1-2) or Install Kafka offline 
 # KAFKA_DIR="/opt/kafka_2.13-3.6.1"

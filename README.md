@@ -52,7 +52,8 @@ Windows ipconfig -> 이더넷 어댑터 이더넷:기본 게이트웨이(172.30.
 2. Run Script
 
     ```bash
-    bash wsl-scripts/run-init.sh
+    sudo chmod +x wsl-scripts/*
+    sudo ./wsl-scripts/run-init.sh
     ```
 
 ## (4) [WSL2] Run API
