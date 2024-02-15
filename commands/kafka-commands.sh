@@ -7,6 +7,5 @@
 
 /opt/kafka_2.13-3.6.1/bin/kafka-topics.sh --list --bootstrap-server localhost:9092
 
-
 /opt/kafka_2.13-3.6.1/bin/kafka-console-consumer.sh --topic iot-platform-1 --bootstrap-server localhost:9092
 /opt/kafka_2.13-3.6.1/bin/kafka-topics.sh --delete --topic iot-platform-1 --bootstrap-server localhost:9092

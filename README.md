@@ -61,17 +61,11 @@ KAFKA_TOPIC = 'iot-platform-1'
 ### 2. Environment Setup
 
 ```bash
-cd realtime-api
-python3 -m venv realtime-api-venv
-pip install kafka-python
-
 # Linux or macOS:
-source realtime-api-venv/bin/activate
+source iot-venv/bin/activate
 
 # Windows:
-realtime-api-venv\Scripts\activate
-
-pip install kafka-python
+iot-venv\Scripts\activate
 ```
 
 ### 3. Run Realtime API
@@ -143,14 +137,7 @@ Windows ipconfig -> 이더넷 어댑터 이더넷:기본 게이트웨이(172.30.
 ## (2) [WSL] Init & Configuration
 
 ```bash
-sudo chmod +x 2-wsl-init-scripts/*
-sudo chmod +x 3-wsl-prepare-materials-scripts/*
-sudo chmod +x 4-produce-data/*
-sudo chmod +x 5-deploy-api/*
-```
-
-```bash
-./2-wsl-init-scripts/run-init.sh
+bash 2-wsl-init-scripts/run-init.sh
 
 # run-init.sh 내부:
 # 1-init.sh
@@ -164,7 +151,7 @@ sudo chmod +x 5-deploy-api/*
 ## (3) [WSL] Create Materials
 
 ```bash
-./3-wsl-create-materials-scripts/run-create-materials.sh
+bash 3-wsl-create-materials-scripts/run-create-materials.sh
 
 # run-create-materials.sh 내부:
 # 1-create-topic.sh
@@ -202,7 +189,7 @@ CREATE TABLE IF NOT EXISTS data_table_1 (
 ## (4) [WSL] Produce Data
 
 ```bash
-./4-produce-data/run-produce-data.sh
+bash 4-produce-data/run-produce-data.sh
 
 # producer_pid: 백그라운드로 돌아가는 producer pid
 # kill -9 $(pid)
@@ -211,7 +198,7 @@ CREATE TABLE IF NOT EXISTS data_table_1 (
 ## (5) [WSL] Deploy API
 
 ```bash
-./5-deploy-api/run-deploy-api.sh
+bash 5-deploy-api/run-deploy-api.sh
 
 # api_server_pid: 백그라운드로 돌아가는 api server pid
 # kill -9 $(pid)
