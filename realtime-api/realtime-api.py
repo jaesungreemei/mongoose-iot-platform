@@ -11,7 +11,7 @@ KAFKA_TOPIC = 'iot-platform-1'
 
 
 def parse_arguments():
-    """명령줄 인수 처리"""
+    """Parse command line arguments"""
     
     parser = argparse.ArgumentParser(description='Kafka Consumer to save filtered messages into CSV files.')
     parser.add_argument('--folder-name', required=True, help='The name of the folder to store the CSV files.')
@@ -21,7 +21,7 @@ def parse_arguments():
 
 
 def setup_data_folder(data_folder):
-    """데이터 폴더 설정"""
+    """Set up the data folder"""
     
     data_path = f"data/{data_folder}"
     if os.path.exists(data_path):
@@ -34,7 +34,7 @@ def setup_data_folder(data_folder):
 
 
 def create_consumer():
-    """Kafka Consumer 설정"""
+    """Configure Kafka Consumer"""
     
     consumer = KafkaConsumer(
         KAFKA_TOPIC,
@@ -46,7 +46,7 @@ def create_consumer():
 
 
 def save_message_to_csv(message, file_path):
-    """단일 메시지를 CSV 파일에 저장"""
+    """Save a single message to a CSV file"""
     
     fieldnames = ['day', 'time', 'machine', 'value1', 'value2', 'value3', 'value4', 'value5', 'value6', 'value7', 'value8', 'value9']
     file_exists = os.path.isfile(file_path)
@@ -55,14 +55,15 @@ def save_message_to_csv(message, file_path):
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         
         if not file_exists:
-            writer.writeheader()  # 파일이 새로 생성될 때만 헤더 작성
+            writer.writeheader()
             
         writer.writerow(message)
-        file.flush()  # 변경 사항을 즉시 디스크에 반영
+        file.flush()
 
 
 def consume_messages(consumer, data_path, machine_id):
-    """Kafka 메시지 소비 및 파일 저장, 시간대별로 파일 분리"""
+    """Consume Kafka messages and save to file, split by time period"""
+    
     current_hour = None
     counter = 0
     
@@ -72,26 +73,20 @@ def consume_messages(consumer, data_path, machine_id):
         if machine_id.lower() == 'all' or str(message_value['machine']) == machine_id:
             now = datetime.now()
             message_hour = now.strftime("%Y-%m-%d.%H")
-            
-            # 현재 시간대에 해당하는 파일 경로 생성
             file_path = os.path.join(data_path, f"{message_hour}.csv")
-            
             if current_hour != message_hour:
-                # 시간대가 변경되었다면, 현재 시간대를 업데이트
                 current_hour = message_hour
                 
-            # 메시지를 현재 시간대의 파일에 즉시 저장
             save_message_to_csv(message_value, file_path)
             counter += 1
             
-            # 프로그레스 바 업데이트
-            print_progress(counter)  # 메시지 길이나 다른 적절한 지표로 프로그레스 업데이트
+            print_progress(counter)
             
     sys.stdout.write("\n")
 
 
 def print_progress(iteration):
-    """데이터 저장 중 프로그레스 바를 출력하는 함수"""
+    """Print progress bar while saving data"""
     
     symbols = ['/', '|', '\\', '-']
     sys.stdout.write(f"\rData saving... {symbols[iteration % len(symbols)]}")
