@@ -48,7 +48,7 @@ def create_consumer():
 def save_message_to_csv(message, file_path):
     """Save a single message to a CSV file"""
     
-    fieldnames = ['day', 'time', 'machine', 'value1', 'value2', 'value3', 'value4', 'value5', 'value6', 'value7', 'value8', 'value9']
+    fieldnames = ['date', 'time', 'machine', 'value1', 'value2', 'value3', 'value4', 'value5', 'value6', 'value7', 'value8', 'value9']
     file_exists = os.path.isfile(file_path)
     
     with open(file_path, mode='a', newline='') as file:

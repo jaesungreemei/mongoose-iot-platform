@@ -19,7 +19,7 @@ session.set_keyspace('iot_platform')
 # data 테이블 생성
 session.execute("""
     CREATE TABLE IF NOT EXISTS data_table_1 (
-        day int,
+        date int,
         time int,
         machine int,
         value1 float,
@@ -31,7 +31,7 @@ session.execute("""
         value7 float,
         value8 float,
         value9 float,
-        PRIMARY KEY ((day, machine), time)
+        PRIMARY KEY ((date, machine), time)
     ) WITH CLUSTERING ORDER BY (time DESC)
 """)
 

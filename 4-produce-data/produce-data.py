@@ -14,13 +14,13 @@ cnt = 0
 while True:
     # 현재 시간 및 날짜
     now = datetime.now()
-    day = now.strftime("%Y%m%d")
+    date = now.strftime("%Y%m%d")
     current_time = now.strftime("%H%M%S")
 
     for machine in range(100, 1000, 100):
         # 메시지 생성
         message = {
-            "day": int(day),
+            "date": int(date),
             "time": int(current_time),
             "machine": machine,
             "value1": round(random.random(), 4),
