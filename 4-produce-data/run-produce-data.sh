@@ -1,4 +1,10 @@
 #!/bin/bash
+
+# 스크립트 실행 전에 API 서버를 종료하기 위한 코드
+# 저장된 PID 파일을 읽어서 해당 PID의 프로세스를 종료
+pid=$(<4-produce-data/producer_pid)
+sudo kill $pid
+
 # 가상 환경 디렉토리 설정
 VENV_DIR="iot-venv"
 

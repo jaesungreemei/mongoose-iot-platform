@@ -66,7 +66,7 @@ sudo chmod +x 5-deploy-api/*
 ```
 
 ```bash
-sudo ./2-wsl-init-scripts/run-init.sh
+./2-wsl-init-scripts/run-init.sh
 
 # run-init.sh 내부:
 # 1-init.sh
@@ -80,7 +80,7 @@ sudo ./2-wsl-init-scripts/run-init.sh
 ## (3) [WSL] Create Materials
 
 ```bash
-sudo ./3-wsl-create-materials-scripts/run-create-materials.sh
+./3-wsl-create-materials-scripts/run-create-materials.sh
 
 # run-create-materials.sh 내부:
 # 1-create-topic.sh
@@ -119,17 +119,17 @@ CREATE TABLE IF NOT EXISTS data_table_1 (
 ## (4) [WSL] Produce Data
 
 ```bash
-sudo ./4-produce-data/run-produce-data.sh
+./4-produce-data/run-produce-data.sh
 
 # producer_pid: 백그라운드로 돌아가는 producer pid
-# sudo kill $(pid)
+# kill -9 $(pid)
 ```
 
 ## (5) [WSL] Deploy API
 
 ```bash
-sudo ./5-deploy-api/run-deploy-api.sh
+./5-deploy-api/run-deploy-api.sh
 
 # api_server_pid: 백그라운드로 돌아가는 api server pid
-# sudo kill $(pid)
+# kill -9 $(pid)
 ```

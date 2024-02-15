@@ -12,9 +12,9 @@ else
 fi
 
 echo "Extracting Kafka to $KAFKA_DIR..."
-mkdir -p $KAFKA_DIR
-tar -xzf /tmp/kafka.tgz -C /opt
-mv /opt/kafka_2.13-3.6.1/* $KAFKA_DIR
+sudo mkdir -p $KAFKA_DIR
+sudo tar -xzf /tmp/kafka.tgz -C /opt
+sudo mv /opt/kafka_2.13-3.6.1/* $KAFKA_DIR
 sudo rm /tmp/kafka.tgz
 
 # (1-2) or Install Kafka offline 
@@ -27,8 +27,10 @@ read -p "[Kafka] Enter the IP address for advertised.listeners configuration: " 
 read -p "[Kafka] Enter the port for advertised.listeners configuration: " listener_port
 
 # (3) Update server.properties with listener configurations
-echo "listeners=PLAINTEXT://0.0.0.0:9092" >> $KAFKA_DIR/config/server.properties
-echo "advertised.listeners=PLAINTEXT://$listener_ip:$listener_port" >> $KAFKA_DIR/config/server.properties
+sudo sed -i 's/^#listeners=PLAINTEXT:\/\/:9092/listeners=PLAINTEXT:\/\/0.0.0.0:9092/' $KAFKA_DIR/config/server.properties
+
+sudo sed -i "s/^#advertised.listeners=PLAINTEXT:\/\/your.host.name:9092/advertised.listeners=PLAINTEXT:\/\/$listener_ip:$listener_port/" $KAFKA_DIR/config/server.properties
+
 
 # (4) Check if UFW is active
 UFW_STATUS=$(sudo ufw status verbose | grep "Status: active")
