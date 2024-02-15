@@ -1,6 +1,6 @@
 curl http://localhost:8083/connectors
 
-curl -X POST -H "Content-Type: application/json" --data @/home/seok/local-iot-platform/3-wsl-create-materials-scripts/cassandra-sink-connector.json http://localhost:8083/connectors
+curl -X POST -H "Content-Type: application/json" --data @3-wsl-create-materials-scripts/cassandra-sink-connector.json http://localhost:8083/connectors
 
 curl http://localhost:8083/connectors/iot-platform-sink/status
 

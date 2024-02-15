@@ -46,7 +46,7 @@ After=network.target
 [Service]
 Type=simple
 ExecStart=$KAFKA_DIR/bin/connect-distributed.sh $CONNECT_CONFIG
-User=$(whoami)
+User=root
 Restart=on-failure
 
 [Install]

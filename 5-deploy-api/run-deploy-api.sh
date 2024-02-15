@@ -17,11 +17,6 @@ source $VENV_DIR/bin/activate
 # Flask 실행할 애플리케이션 파일 경로 지정
 export FLASK_APP=5-deploy-api/api.py
 
-# export FLASK_ENV=development  # 개발 환경 설정
-
-# 필요한 패키지 설치
-pip install Flask cassandra-driver
-
 echo "Starting the API server in the background..."
 
 # API 스크립트를 백그라운드에서 실행하고 로그를 파일로 저장

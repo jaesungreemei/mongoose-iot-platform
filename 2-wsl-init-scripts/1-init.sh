@@ -13,7 +13,15 @@ echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> ~/.bashrc
 echo 'export PATH=$PATH:$JAVA_HOME/bin' >> ~/.bashrc
 source ~/.bashrc
 
-sudo apt install -y python3.8-venv
+sudo apt install -y python3-venv
+
+# 가상 환경 디렉토리 설정
+VENV_DIR="iot-venv"
+python3 -m venv $VENV_DIR
+
+source $VENV_DIR/bin/activate
+pip install -r requirements.txt
+deactivate
 
 # git config --global user.email seok990301@gmail.com
 # git config --global user.name seok0301
