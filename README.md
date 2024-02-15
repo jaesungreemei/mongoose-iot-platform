@@ -1,17 +1,49 @@
 # mongoose-iot-platform
 MongooseAI IoT Data Streaming Platform
 
-# TODO
-2. API 함수 및 명세서 작성
-3. Backend 코드 JAVA로 수정하기
-
 # How to Use (Client)
 
-## (1) API 명세서
+## (1) API Specification
 
-```
-curl "http://121.184.96.123:8012/data?machine=100&day=20240214"
-```
+### 1. Endpoint
+
+`http://121.184.96.123:8012/api/data/query`
+
+This endpoint allows querying data based on machine IDs, date, time range, and specific columns.
+
+### 2. Method: `GET`
+
+### 3. Query Parameters
+
+- `machines` (optional): Comma-separated list of machine IDs or 'all' for all machines. Default is 'all'.
+- `date` (required): Date in YYYYMMDD format.
+- `start_time` (optional): Start time in HHMMSS format. Must be used in conjunction with `end_time`.
+- `end_time` (optional): End time in HHMMSS format.
+- `columns` (optional): Comma-separated list of data columns to return or 'all' for all columns. Default is 'all'.
+
+### 4. Success Response
+
+- **Code**: 200 OK
+- **Content**: List of objects containing the requested data.
+
+### 5. Error Response
+
+- **Code**: 400 Bad Request (if required parameters are missing or invalid)
+- **Content**: { "error": "Invalid request parameters" }
+
+### 6.Example
+
+- Request
+
+    ```bash
+    curl "http://121.184.96.123:8012/api/data/query?machine=100&date=20240215&start_time=093000&end_time=095959"
+    ```
+
+- Response
+
+    ```json
+    []
+    ```
 
 ## (2) Realtime API
 
@@ -61,7 +93,7 @@ python realtime-api.py --folder-name dataFolder --machine 100
 The script will save the data in CSV files within the specified directory (data/dataFolder). Files are named according to the timestamp, for example, 2024-02-12.05.csv for messages received during the 5 AM hour on February 12, 2024. Each file contains a header followed by the message data, structured as follows:
 
 ```
-day,time,machine,value1,value2,value3,value4,value5,value6,value7,value8,value9
+date,time,machine,value1,value2,value3,value4,value5,value6,value7,value8,value9
 ```
 
 # How to Install (Server)
@@ -151,7 +183,7 @@ sudo chmod +x 5-deploy-api/*
 ```sql
 -- Cassandra Table: data_table_1
 CREATE TABLE IF NOT EXISTS data_table_1 (
-    day int,
+    date int,
     time int,
     machine int,
     value1 float,
@@ -163,7 +195,7 @@ CREATE TABLE IF NOT EXISTS data_table_1 (
     value7 float,
     value8 float,
     value9 float,
-    PRIMARY KEY ((day, machine), time)
+    PRIMARY KEY ((date, machine), time)
 ) WITH CLUSTERING ORDER BY (time DESC)
 ```
 
