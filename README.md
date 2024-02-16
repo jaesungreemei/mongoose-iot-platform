@@ -91,7 +91,6 @@ python3 -m venv "iot-venv"
 
 # Linux or macOS:
 source iot-venv/bin/activate
-
 # Windows:
 iot-venv\Scripts\activate
 
