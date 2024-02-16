@@ -20,7 +20,7 @@ cluster = Cluster(CASSANDRA_HOSTS, auth_provider=AUTH_PROVIDER)
 session = cluster.connect('iot_platform')  # 사용할 keyspace 지정
 session.row_factory = dict_factory
 
-@app.route('/api/data/query', methods=['GET'])
+@app.route('/api/data', methods=['GET'])
 def data_query():
     date = request.args.get('date')
     machines = request.args.get('machines', 'all')

@@ -133,6 +133,9 @@ git clone git@github.com:Mongoose-AI/mongoose-iot-platform.git
 ```
 # powershell 관리자 권한 실행
 .\1-windows-scripts\1-wsl-install.ps1
+
+# Installing, this may take a few minutes...에서 멈출 시, 엔터 눌러야 함
+# Ubuntu 20.04 로그인 되었으면, exit 입력
 ```
 
 ### 3. WSL 포트 포워딩 및 windows 방화벽 설정
@@ -167,6 +170,10 @@ Windows ipconfig -> 이더넷 어댑터 이더넷:기본 게이트웨이(172.30.
 ```bash
 sudo apt update
 sudo apt install dos2unix
+
+cd mongoose-iot-platform
+
+# DOS/Windows 시스템에서 사용하는 줄바꿈 문자를 UNIX/Linux 시스템의 줄바꿈 문자로 전환
 dos2unix */*.sh
 ```
 

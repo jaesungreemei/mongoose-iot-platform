@@ -1,5 +1,4 @@
 #!/bin/bash
-curl -X DELETE http://localhost:8083/connectors/iot-platform-sink
 echo "Creating the Cassandra Sink Connector..."
 curl -X POST -H "Content-Type: application/json" --data @3-wsl-create-materials-scripts/cassandra-sink-connector.json http://localhost:8083/connectors
 echo "Cassandra Sink Connector created successfully."

@@ -1,10 +1,24 @@
 #!/bin/bash
 
-# 스크립트 실행 전에 API 서버를 종료하기 위한 코드
-# 저장된 PID 파일을 읽어서 해당 PID의 프로세스를 종료
-pid=$(<4-produce-data/producer.pid)
-kill -9 $pid
+PID_FILE="4-produce-data/producer.pid"
 
+# PID 파일이 존재하는지 확인
+if [ -f "$PID_FILE" ]; then
+    # 파일이 존재하면, PID를 읽고 해당 프로세스를 종료
+    pid=$(<$PID_FILE)
+    echo "Killing process with PID $pid..."
+    kill -9 $pid
+    
+    # 종료 메시지 출력
+    if [ $? -eq 0 ]; then
+        echo "Process $pid has been successfully terminated."
+    else
+        echo "Failed to terminate process $pid."
+    fi
+else
+    # 파일이 없으면, 사용자에게 메시지를 출력
+    echo "$PID_FILE does not exist. Skipping process termination."
+fi
 # 가상 환경 디렉토리 설정
 VENV_DIR="iot-venv"
 
