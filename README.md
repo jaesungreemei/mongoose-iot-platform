@@ -5,45 +5,71 @@ MongooseAI IoT Data Streaming Platform
 
 ## (1) API Specification
 
-### 1. Endpoint
+### 1. Base Endpoint
 
-`http://121.184.96.123:8012/api/data/query`
+`http://121.184.96.123:8012/api`
 
-This endpoint allows querying data based on machine IDs, date, time range, and specific columns.
+This base endpoint serves as the root for accessing various resources and actions related to machine data querying and management.
 
-### 2. Method: `GET`
+### 2. Available Endpoints
 
-### 3. Query Parameters
+#### 2.1 /data
 
-- `machines` (optional): Comma-separated list of machine IDs or 'all' for all machines. Default is 'all'.
-- `date` (required): Date in YYYYMMDD format.
-- `start_time` (optional): Start time in HHMMSS format. Must be used in conjunction with `end_time`.
-- `end_time` (optional): End time in HHMMSS format.
-- `columns` (optional): Comma-separated list of data columns to return or 'all' for all columns. Default is 'all'.
+Allows querying machine data based on machine IDs, date, time range, and specific values.
 
-### 4. Success Response
+- Method: `GET`
+- Query Parameters:
+    - `date` (required): Date in YYYYMMDD format.
+    - `machines` (optional): Comma-separated list of machine IDs or 'all' for all machines. Default is 'all'.
+    - `start_time` (optional): Start time in HHMMSS format. Must be used in conjunction with end_time.
+    - `end_time` (optional): End time in HHMMSS format.
+    - `data_columns` (optional): Comma-separated list of data columns to return or 'all' for all columns. Default is 'all'.
+- Success Response:
+    - **Code**: 200 OK
+    - **Content**: List of objects containing the requested data.
+- Error Response:
+    - **Code**: 400 Bad Request (if required parameters are missing or invalid)
+    - **Content**: { "error": "Invalid request parameters" }, { "error": "Invalid data columns in query. Please check your query parameters." }
 
-- **Code**: 200 OK
-- **Content**: List of objects containing the requested data.
+#### 2.2 /machines
 
-### 5. Error Response
+Provides access to machine-specific operations, such as listing all machines or retrieving specific machine details.
 
-- **Code**: 400 Bad Request (if required parameters are missing or invalid)
-- **Content**: { "error": "Invalid request parameters" }
+- Method: `GET`
+- Success Response:
+    - **Code**: 200 OK
+    - **Content**: List of all machines or details of a specific machine.
 
-### 6.Example
+#### 2.3 /data_columns
 
-- Request
+Allows querying available data columns, which can be used in the /data/query endpoint.
 
-    ```bash
-    curl "http://121.184.96.123:8012/api/data/query?machine=100&date=20240215&start_time=093000&end_time=095959"
-    ```
+- Method: `GET`
+- Success Response:
+    - **Code**: 200 OK
+    - **Content**: List of all available data columns.
 
-- Response
+### 3. Request Example
 
-    ```json
-    []
-    ```
+```bash
+# 특정 날짜 전체 machine 데이터 조회
+GET /api/data?date=20240215
+
+# 특정 날짜, 특정 machine 데이터 조회
+GET /api/data?machines=100&date=20240215
+
+# 특정 날짜, 특정 machine, 특정 구간 데이터 조회
+GET /api/data?machines=100&date=20240215&start_time=180000&end_time=185959
+
+# 특정 날짜, 특정 machines, 특정 values 조회
+GET /api/data?machines=100,200,400&date=20240215&data_columns=value1,value5,value8
+
+# 전체 machine list 조회
+GET /api/machines
+
+# 전체 data column list 조회
+GET /api/data_columns
+```
 
 ## (2) Realtime API
 
@@ -61,6 +87,8 @@ KAFKA_TOPIC = 'iot-platform-1'
 ### 2. Environment Setup
 
 ```bash
+python3 -m venv "iot-venv"
+
 # Linux or macOS:
 source iot-venv/bin/activate
 
@@ -137,6 +165,12 @@ Windows ipconfig -> 이더넷 어댑터 이더넷:기본 게이트웨이(172.30.
 ## (2) [WSL] Init & Configuration
 
 ```bash
+sudo apt update
+sudo apt install dos2unix
+dos2unix */*.sh
+```
+
+```bash
 bash 2-wsl-init-scripts/run-init.sh
 
 # run-init.sh 내부:
@@ -146,7 +180,15 @@ bash 2-wsl-init-scripts/run-init.sh
 # 4-init-kafka-connect.sh
 
 # 중간 중간에 ip configuration 직접 입력해야 함
+
+[Kafka] Enter the IP address for advertised.listeners configuration:
+121.184.96.123
+[Kafka] Enter the port for advertised.listeners configuration:
+8092
+[Cassandra] Enter the IP address for broadcast_rpc_address configuration:
+121.184.96.123
 ```
+
 
 ## (3) [WSL] Create Materials
 
@@ -191,7 +233,7 @@ CREATE TABLE IF NOT EXISTS data_table_1 (
 ```bash
 bash 4-produce-data/run-produce-data.sh
 
-# producer_pid: 백그라운드로 돌아가는 producer pid
+# producer.pid: 백그라운드로 돌아가는 producer pid
 # kill -9 $(pid)
 ```
 
@@ -200,6 +242,6 @@ bash 4-produce-data/run-produce-data.sh
 ```bash
 bash 5-deploy-api/run-deploy-api.sh
 
-# api_server_pid: 백그라운드로 돌아가는 api server pid
+# api_server.pid: 백그라운드로 돌아가는 api server pid
 # kill -9 $(pid)
 ```
