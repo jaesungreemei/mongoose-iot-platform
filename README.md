@@ -53,16 +53,16 @@ Allows querying available data columns, which can be used in the /data/query end
 
 ```bash
 # 특정 날짜 전체 machine 데이터 조회
-GET /api/data?date=20240215
+GET /api/data?date=20240216
 
 # 특정 날짜, 특정 machine 데이터 조회
-GET /api/data?machines=100&date=20240215
+GET /api/data?machines=100&date=20240216
 
 # 특정 날짜, 특정 machine, 특정 구간 데이터 조회
-GET /api/data?machines=100&date=20240215&start_time=180000&end_time=185959
+GET /api/data?machines=100&date=20240216&start_time=180000&end_time=185959
 
 # 특정 날짜, 특정 machines, 특정 values 조회
-GET /api/data?machines=100,200,400&date=20240215&data_columns=value1,value5,value8
+GET /api/data?machines=100,200,400&date=20240216&data_columns=value1,value5,value8
 
 # 전체 machine list 조회
 GET /api/machines
