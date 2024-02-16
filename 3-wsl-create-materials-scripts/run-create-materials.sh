@@ -1,6 +1,4 @@
 #!/bin/bash
-# 스크립트 실행 시 오류 발생 시 중단
-set -e
 # 스크립트 파일들의 경로 배열
 scripts=(
     "3-wsl-create-materials-scripts/1-create-topic.sh"

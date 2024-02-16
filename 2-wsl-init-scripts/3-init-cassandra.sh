@@ -39,16 +39,16 @@ sudo sed -i "s/cluster_name: 'Test Cluster'/cluster_name: 'IoT-Platform'/g" $CAS
 # echo "Configuring listen_address..."
 # sudo sed -i '/^listen_address:/c\listen_address: 0.0.0.0' $CASSANDRA_CONFIG
 
+# broadcast_rpc_address 주석 해제 및 설정 변경
+echo "[Cassandra] Configuring broadcast_rpc_address..."
+read -p "[Cassandra] Enter the IP address for broadcast_rpc_address configuration: " broadcast_rpc_ip
+sudo sed -i "/^# broadcast_rpc_address:/c\broadcast_rpc_address: $broadcast_rpc_ip" $CASSANDRA_CONFIG
+
 # rpc_address 설정 변경
 # 클라이언트 요청을 수신하는 데 사용되는 IP 주소
 # localhost로 하면, localhost에서만 접속 가능
 echo "[Cassandra] Configuring rpc_address..."
 sudo sed -i '/^rpc_address:/c\rpc_address: 0.0.0.0' $CASSANDRA_CONFIG
-
-# broadcast_rpc_address 주석 해제 및 설정 변경
-echo "[Cassandra] Configuring broadcast_rpc_address..."
-read -p "[Cassandra] Enter the IP address for broadcast_rpc_address configuration: " broadcast_rpc_ip
-sudo sed -i "/^# broadcast_rpc_address:/c\broadcast_rpc_address: $broadcast_rpc_ip" $CASSANDRA_CONFIG
 
 
 
