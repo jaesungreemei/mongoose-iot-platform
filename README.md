@@ -92,10 +92,10 @@ python3 -m venv "iot-venv"
 # Linux or macOS:
 source iot-venv/bin/activate
 
-pip install -r requirements.txt
-
 # Windows:
 iot-venv\Scripts\activate
+
+pip install -r requirements.txt
 ```
 
 ### 3. Run Realtime API
