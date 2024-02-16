@@ -202,3 +202,4 @@ poetry.toml
 pyrightconfig.json
 
 *venv/
+*.pid
