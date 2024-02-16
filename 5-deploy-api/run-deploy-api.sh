@@ -23,9 +23,6 @@ fi
 # 가상 환경 디렉토리 설정
 VENV_DIR="iot-venv"
 
-# 가상 환경 생성 (이미 존재하는 경우 건너뜀)
-python3 -m venv $VENV_DIR
-
 # 가상 환경 활성화
 source $VENV_DIR/bin/activate
 
